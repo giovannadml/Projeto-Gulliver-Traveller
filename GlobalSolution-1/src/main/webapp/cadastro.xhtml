@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+	<ui:composition template="_template2.xhtml">
+		<ui:define name="content">
+	
+			<p:messages id="messages" globalOnly="true" />
+			<h:form class="form">
+				<div class="form-card">
+					<div class="head-login">
+						<a href="login.xhtml" style="color: #ccc; font-size: 25px;">Login</a>
+						<a href="cadastro.xhtml">Cadastro</a>
+					</div>
+					
+					<!-- CAMPOS DE INSERÇÃO DE DADOS DO USUÁRIO -->
+					<div class="ui-fluid">
+						<!-- NOME -->
+						<label for="name" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0 label">Nome
+							*</label>
+						<div class="p-field p-grid">
+							<div class="p-col-12 p-md-10 div-input">
+								<p:inputText id="name" type="text"
+									requiredMessage="O campo de nome é obrigatório!"
+									value="#{usuarioBean.usuario.nome}" required="true"
+									autocomplete="off">
+									<f:ajax event="blur" render="message-name" />
+								</p:inputText>
+								<p:message for="name" id="message-name" />
+							</div>
+						</div>
+	
+						<!-- DATA DE NASCIMENTO -->
+						<div class="p-field p-col-12 p-md-4">
+							<p:outputLabel for="birthDate" class="label"
+								value="Data de Nascimento" />
+							<div class="p-field p-col-12 p-md-4 div-input">
+								<p:datePicker id="birthDate"
+									value="#{usuarioBean.usuario.dataNascimento}"
+									monthNavigator="true" yearNavigator="true" required="true"
+									requiredMessage="O campo de data de nascimento é obrigatório!"
+									autocomplete="off">
+									<f:ajax event="blur" render="message-birthdate" />
+								</p:datePicker>
+								<p:message for="birthDate" id="message-birthdate" />
+							</div>
+						</div>
+	
+						<!-- E-MAIL -->
+						<label for="email" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0 label">E-mail
+							*</label>
+						<div class="p-field p-grid">
+							<div class="p-col-12 p-md-10 div-input">
+								<p:inputText id="email" type="text"
+									value="#{usuarioBean.usuario.email}" required="true"
+									autocomplete="off"
+									requiredMessage="O campo de e-mail é obrigatório!"
+									validatorMessage="E-mail inválido.">
+									<f:ajax event="blur" render="message-email" />
+									<f:validateRegex
+										pattern="([^.@]+)(\.[^.@]+)*@([^.@]+\.)+([^.@]+)" />
+								</p:inputText>
+								<p:message for="email" id="message-email" />
+							</div>
+						</div>
+	
+						<!-- SENHA -->
+						<label for="password"
+							class="p-col-12 p-mb-2 p-md-2 p-mb-md-0 label">Senha *</label>
+						<div class="p-field p-grid">
+							<div class="p-col-12 p-md-10 div-input">
+								<p:password id="password" value="#{usuarioBean.usuario.senha}"
+									feedback="true" autocomplete="off" required="true"
+									requiredMessage="O campo de senha é obrigatório!">
+									<f:ajax event="blur" render="message-password" />
+								</p:password>
+								<p:message for="password" id="message-password" />
+							</div>
+						</div>
+	
+					</div>
+	
+					<!-- BOTÕES DE CADASTRO E PARA CANCELAR -->
+					<div class="botoes">
+						<p:commandButton style="background-color: #0a2d37; border: #000;"
+							class="com-button" icon="pi pi-check" value="Salvar"
+							action="#{usuarioBean.criar}">
+							<f:ajax render="messages" execute="@form" />
+						</p:commandButton>
+					</div>
+				</div>
+			</h:form>
+	
+		</ui:define>
+	</ui:composition>
+
+
+
+</html>

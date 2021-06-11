@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title><ui:insert name="title">Global Solution</ui:insert></title>
+	<h:outputStylesheet library="css" name="style.css" />
+	<h:outputStylesheet library="css" name="pages/avaliacoes.css" />
+	<h:outputStylesheet library="css" name="pages/hotel.css" />
+	<h:outputScript name="porta.js" library="js" />
+</h:head>
+
+<h:body>
+
+	<div id="header">
+		<ui:insert name="header">
+			<div class="header-content">
+				<div class="div-header-links">
+					<a href="index.xhtml" class="title-header">Projeto Traveler <img src="resources/img/aviao.png" style="width: 30px; heigth: 30px;" /></a> 
+					<a class="botao-conta" href="MinhaConta.xhtml">Minha conta</a>
+				</div>
+				<p:commandLink id="link-porta" action="#{usuarioBean.logout}">
+					<img class="img-porta" src="resources/img/porta-fechada-branca.png"
+						onmouseout="this.src='resources/img/porta-fechada-branca.png';"
+						onmouseover="this.src='resources/img/porta-aberta-branca.png';" />
+				</p:commandLink>
+			</div>
+		</ui:insert>
+	</div>
+
+
+	<div id="content">
+		<ui:insert name="content">
+
+		</ui:insert>
+	</div>
+
+	<div id="footer">
+		<ui:insert name="footer">
+			<div class="footer">
+				<p style="font-size: 20px; color: #CD6B6B;">
+					Grupo Poágilers<img style="width: 20px; height: 20px;"
+						src="resources/img/marca-registrada-rosa.png" /> - Global
+					Solution I 2021
+				</p>
+			</div>
+		</ui:insert>
+	</div>
+
+</h:body>
+
+</html>

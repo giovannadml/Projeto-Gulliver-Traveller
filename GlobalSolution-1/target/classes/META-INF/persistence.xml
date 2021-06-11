@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+  <persistence-unit name="GlobalSolution-1-persistence-unit" transaction-type="RESOURCE_LOCAL">
+  	<description>Forge Persistence Unit</description>
+  	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>br.com.fiap.entity.Usuario</class>
+    <class>br.com.fiap.entity.Endereco</class>
+    <class>br.com.fiap.entity.Hotel</class>
+    <class>br.com.fiap.entity.Avaliacao</class>
+    <exclude-unlisted-classes>false</exclude-unlisted-classes>
+    <properties>
+      <property name="hibernate.hbm2ddl.auto" value="update"/>
+      <property name="hibernate.show_sql" value="true"/>
+      <property name="hibernate.format_sql" value="true"/>
+      <property name="hibernate.transaction.flush_before_completion" value="true"/>
+
+      <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+	  <property name="javax.persistence.jdbc.user" value="kaue2021@servidor-sqldb-globalrm85707"/>
+	  <property name="javax.persistence.jdbc.password" value="Global2021"/>
+	  <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://servidor-sqldb-globalrm85707.database.windows.net:1433;database=sqldb-global;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"/>
+    </properties>
+  </persistence-unit>
+</persistence>

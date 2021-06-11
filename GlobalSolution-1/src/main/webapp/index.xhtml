@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="content">
+
+
+		<div class="card">
+			<h:form>
+				<p:panelMenu style="width:100wh">
+					<p:submenu label="Categorias">
+						<p:menuitem value="Hotéis bons para negócio"
+							action="#{hotelBean.buscarCategoria('Negócio')}" ajax="false" icon="pi pi-home" />
+						<p:menuitem value="Hotéis bons para turismo"
+							action="#{hotelBean.buscarCategoria('Turismo')}" ajax="false" icon="pi pi-home" />
+						<p:menuitem value="Hotéis bons para trabalho"
+							action="#{hotelBean.buscarCategoria('Trabalho')}" ajax="false" icon="pi pi-home" />
+					</p:submenu>
+				</p:panelMenu>
+			</h:form>
+		</div>
+
+
+		<div class="product card">
+			<h:form>
+				<p:dataScroller ajax="false" value="#{hotelBean.hoteis}" var="hotel"
+					chunkSize="10" mode="inline" scrollHeight="500"  style="width: 70%; margin: 1% auto;">
+					<f:facet name="header">
+                	Role para baixo para ver mais hotéis
+            		</f:facet>
+					<div class="hotel">
+						<div class="hotel-list-item p-p-5" >
+							<div class="hotel-list-detail" style="display: flex; flex-direction: column; justify-content: center; margin-top: 2%;">
+								<div class="hotel-name">#{hotel.nome}</div>
+								<p:rating readonly="true" value="#{avaliacaoBean.MediaRating(hotel.codigo)}" />
+							</div>
+							<div class="hotel-description">#{hotel.descricao}</div>
+							<div class="hotel-list-action" style="display: flex; justify-content: center; margin: 1% 0 3%;">
+								<p:commandButton value="Mais informações" action="#{hotelBean.carregarHotel(hotel)}"
+									icon="pi pi-home" immediate="true">
+								</p:commandButton>
+							</div>
+						</div>
+					</div>
+				</p:dataScroller>
+			</h:form>
+		</div>
+		
+		<h:form class="form-tabela">
+			<div class="card">
+				<h3 style="color: #CD6B6B;">Comparar preços</h3>
+				<p:dataTable var="hotel" value="#{hotelBean.hoteis}">
+					<p:column headerText="Hotel" style="text-align: center">
+						<h:outputText value="#{hotel.nome}" />
+					</p:column>
+				
+					<p:column headerText="Preço mínimo diária" style="text-align: center">
+						<h:outputText value="R$ #{hotel.valorEstadia},00" />
+					</p:column>
+
+					<p:column headerText="Taxas" style="text-align: center">
+						<h:outputText value="R$ #{hotel.valorTaxa},00" />
+					</p:column>
+
+					<p:column headerText="Valor total" style="text-align: center">
+						<h:outputText value="R$ #{hotel.valorEstadia + hotel.valorTaxa},00" />
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
+		
+	</ui:define>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</ui:composition>
+</html>

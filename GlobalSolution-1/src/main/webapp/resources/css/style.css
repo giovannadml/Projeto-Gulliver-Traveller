@@ -1,0 +1,186 @@
+@charset 'UTF-8';
+@import url('https://fonts.googleapis.com/css2?family=Proza+Libre&family=Sen&family=Sintony&display=swap');
+
+*{
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	height: 100vh;
+}
+
+.footer {
+	margin-top: 5%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #ddd;
+	height: 12vh;
+	width: 100%;
+}
+
+.footer p {
+	font-size: 20;
+	
+}
+
+#img-hotel {
+	object-fit: cover;
+	height: 20px;
+	width: 20px;
+}
+
+
+.div-header-links{
+	display: flex; 
+	width: 90%; 
+	align-items: center; 
+	justify-content: space-between;
+}
+
+.header-content{
+	display: flex;
+	justify-content: space-between;
+	height: 100px;
+	background-color: #0a7b7b;
+	align-items: center;
+}
+
+.title-header{
+	color: #fff;
+	font-size: 30px;
+	padding: 10px;
+	margin: 0 10px;	
+	text-decoration: none;
+}
+
+.botao-conta{
+	text-decoration: none; 
+	color: #fff; 
+	background-color: #CD6B6B; 
+	border-radius: 10px; 
+	padding: 10px 25px; 
+	font-size: 17px;
+	transition: .8s
+}
+
+.botao-conta:hover{
+	background-color: #bD4c4c;
+	transition: .8s;
+}
+
+
+.img-porta{
+	width: 65px;
+	height: 65px;
+	padding: 10px;
+	margin: 0 15px;
+}
+
+.img-porta:hover{
+	width: 75px;
+	height: 75px;
+	margin: 0 15px;
+}
+
+.link-porta {
+	width: 75px;
+}
+
+.ui-messages{
+	width: 30vw;
+}
+
+.form{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 30vw;
+	margin: 1% auto;
+}
+
+.form-card{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 40vw;
+} 
+
+.head-login{
+	display: flex;
+	justify-content: space-around;
+	border-bottom: #fff 5px solid;
+}
+
+.head-login a{
+	font-size: 30px;
+	text-decoration: none;
+	padding: 2%;
+	color: #fff;
+	font-family: 'Sen', sans-serif;
+	font-weight: bold;
+}
+
+.ui-fluid{	
+	width: 80%;
+	margin: 5% auto;
+}
+
+.p-field{
+	margin: 2% 0;
+}
+
+.label{
+	color: #fff;
+	font-family: sans-serif;
+	margin: 0 auto;
+}
+
+.ui-button-secondary{
+	background-color: #000;
+}
+
+.botoes{
+	display: flex;
+	justify-content: center;
+}
+
+.com-button{
+	background-color: rgb(255, 128, 128);
+	height: 40px;
+	width: 100px;
+}
+
+.ui-button{
+	width: 20%;
+}
+
+.gradiente{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(45deg, #cf0c0c, #479484, #32747b, #479484, #cf0c0c); /*#479484, #2c3e50);*/
+/*   background: linear-gradient(45deg, #fca0a7, #b49229, #01d3eb, #e1cdba, #b4196d); */
+  background-size: 420% 420%;
+  animation: colors 15s ease infinite;
+}
+
+@keyframes colors {
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
+  }
+}
+
+
+

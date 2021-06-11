@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="_template.xhtml">
+	<ui:define name="header">
+		<div class="header-content">
+	<div class="div-header-links">
+		<a href="index.xhtml" class="title-header">Projeto Traveler <img src="resources/img/aviao.png" style="width: 30px; heigth: 30px;" /></a>
+		<h:form>
+	        <p:growl id="message" showDetail="true"/>
+	
+	        <p:commandButton value="Excluir Conta" action="#{usuarioBean.removerConta}" update="message" styleClass="p-mr-2" icon="pi pi-times"
+	        	style="width: 170px; background-color: #CD6B6B; border-radius: 4px; padding: 0 10px; text-align: center; color: #fff; text-decoration: none" >
+	            <p:confirm header="Tem certeza?" message="Essa ação irá excluir sua conta e todas as avaliações que você já fez." icon="pi pi-exclamation-triangle"/>
+	        </p:commandButton>
+	
+	        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+	            <p:commandButton value="Sim" type="button" styleClass="ui-confirmdialog-yes" />
+	            <p:commandButton value="Não" type="button" styleClass="ui-confirmdialog-no ui-button-flat" style="color: #fff"/>
+	        </p:confirmDialog>
+	    </h:form>
+		
+	</div>
+			<div style="display: flex; flex-direction: row; align-items: center">
+				<p:commandLink id="link-porta" action="#{usuarioBean.logout}">
+					<img class="img-porta" src="resources/img/porta-fechada-branca.png"
+						onmouseout="this.src='resources/img/porta-fechada-branca.png';"
+						onmouseover="this.src='resources/img/porta-aberta-branca.png';" />
+				</p:commandLink>
+			</div>
+		</div>
+	</ui:define>
+	<div style="background-color: #ccc; width: 100%; height: 100%">
+		<ui:define name="content">
+			<div
+				style="display: flex; flex-direction: row; justify-content: center; margin-top: 20px">
+				<p
+					style="text-align: center; width: 350px; font-size: 32px; color: #6d6d6d; font-weight: bold">Bem-vindo(a),
+					#{usuario.nome}</p>
+			</div>
+			<div
+				style="display: flex; flex-direction: row; justify-content: space-around; margin-top: 15px">
+				<div
+					style="height: 400px; background-color: #ccc; width: 400px; border-radius: 7px 7px 7px 7px;">
+					<div
+						style="height: 40px; background-color: #0a7b7b; border-radius: 7px 7px 0 0; display: flex; justify-content: center; align-items: center">
+						<p style="color: #fff;">Editar Informações</p>
+					</div>
+					<div class="card">
+						<h:form class="card"
+							style="display: flex; flex-direction: column; align-items: center;">
+							<div
+								style="display: flex; flex-direction: column; color: #4f4f4f; margin: 0px 0 8px 0;">
+								<p:outputLabel for="nome" styleClass="p-d-block">Nome</p:outputLabel>
+								<p:inputText style="width: 300px;" id="nome"
+									styleClass="p-d-block" value="#{usuario.nome}" />
+							</div>
+
+							<div
+								style="display: flex; flex-direction: column; color: #4f4f4f; margin: 8px 0 8px 0;">
+								<p:outputLabel for="email" styleClass="p-d-block">E-mail</p:outputLabel>
+								<p:inputText style="width: 300px;" id="email"
+									styleClass="p-d-block" value="#{usuario.email}" />
+							</div>
+
+							<div class="card">
+								<h:commandButton class="com-button" value="Salvar" action="#{usuarioBean.editar(usuario)}"
+									style="width: 100px; background-color: #e84343; border-radius: 4px; padding: 10px 3px; color: #fff; text-decoration: none; border: 0 ">
+								</h:commandButton>
+							</div>
+						</h:form>
+
+					</div>
+				</div>
+				<div
+					style="height: 400px; background-color: #ccc; width: 400px; border-radius: 7px 7px 7px 7px;">
+					<div
+						style="height: 40px; background-color: #0a7b7b; border-radius: 7px 7px 0 0; display: flex; justify-content: center; align-items: center">
+						<p style="color: #fff;">Editar Senha</p>
+					</div>
+					<h:form class="card"
+						style="display: flex; flex-direction: column; align-items: center;">
+						<span class="ui-float-label" style="margin: 18px 0 10px 0;">
+							<p:inputText style="width: 300px;" id="senhaAtual"
+								value="#{usuarioBean.usuarioSenha.senha}" /> <p:outputLabel
+								for="@previous" value="Senha atual" />
+						</span>
+						<span class="ui-float-label" style="margin: 8px 0 8px 0;">
+							<p:inputText style="width: 300px;" id="novaSenha"
+								value="#{usuarioBean.usuarioNovaSenha.senha}" /> <p:outputLabel
+								for="@previous" value="Nova Senha" />
+						</span>
+						<div class="card">
+							<h:commandButton class="com-button" value="Salvar Senha"
+								action="#{usuarioBean.validaSenha(usuario)}"
+								style="width: 100px; background-color: #e84343; border-radius: 4px; padding: 10px 3px; color: #fff; text-decoration: none; border: 0 ">
+							</h:commandButton>
+						</div>
+					</h:form>
+				</div>
+			</div>
+			<div style="display: flex; justify-content: center">
+				<p:messages style="width:90%" id="message" globalOnly="true" />
+			</div>
+		</ui:define>
+	</div>
+
+</ui:composition>
+</html>

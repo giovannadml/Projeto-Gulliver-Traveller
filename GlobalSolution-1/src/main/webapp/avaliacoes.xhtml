@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:composition template="_template.xhtml">
+		<ui:define name="content">
+			<p:messages id="messages"><p:autoUpdate /></p:messages>
+			<div class="main">
+				<h2>#{hotel.nome}</h2>
+				<div class="div-nova-avaliacao">
+					<div id="link-add-avaliacao" class="div-titulo-avaliacao">
+						<h4>Adicione a sua avaliação!</h4>
+						<p>Ela será publicada em seu nome, tenha isso em mente ao escrever o texto!</p>
+					</div>
+					<div class="div-desc-avaliacao">
+						<h:form>
+							<div class="div-input-avaliacao">
+								<div class="div-stars-nova-avaliacao">
+									<p:rating value="#{hotelBean.avaliacao.numeroAvaliacao}" />
+								</div>
+								<h:inputTextarea id="descricao" value="#{hotelBean.avaliacao.descricao}"
+												 type="text"
+												 required="true" rows="5" cols="75" 
+												 placeholder="Escreva aqui sua avaliação..." 
+												 validatorMessage="Número máximo de 300 caracteres excedido."
+												 requiredMessage="Preencha o campo de descrição para enviar sua avaliação!" >
+									<f:validateLength maximum="300" />
+									<f:ajax event="blur" render="message-desc" />
+								</h:inputTextarea>
+								<p:message for="descricao" id="message-desc" />
+								<div class="div-botao-pub">
+									<p:commandButton style="border: 0px; margin-bottom: 20px; width: 100px; font-size: 15px;"
+										value="Publicar" action="#{hotelBean.criarAvaliacao(hotel)}">
+										<f:ajax render="messages" execute="@form" />
+									</p:commandButton>
+								</div>
+							</div>
+						</h:form>
+					</div>
+				</div>
+
+				<div class="card setup">
+				    <h:form id="form">
+				        <p:dataView var="avaliacao" value="#{hotelBean.avaliacoes}" rows="16" paginator="true"
+				                    rowsPerPageTemplate="6,12"
+				                    paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				                    gridIcon="pi pi-th-large" listIcon="pi pi-bars">
+
+				            <p:dataViewGridItem>
+				                <div class="avaliacao-grid-item card border-1">
+				                    <div class="avaliacao-grid-item-content" style="display: flex; justify-content: space-between; align-items: center">
+				                    	<p class="avaliacao-nome-usuario" style="color: #CD6B6B">#{avaliacao.usuario.nome}</p>
+				                        <p:rating readonly="true" value="#{avaliacao.numeroAvaliacao}"/>
+				                    </div>
+				                    <div style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+				                        <p class="avaliacao-data-registro">postado em #{avaliacao.dataRegistro}</p>
+				                    </div>
+				                    <div class="avaliacao-grid-item-bottom">
+				                        <div class="setup-description" style="margin-bottom: 15px;">#{avaliacao.descricao}</div>
+				                    </div>
+				                </div>
+				            </p:dataViewGridItem>
+				             <p:dataViewListItem>
+				                <div class="avaliacao-list-item" style="margin: 30px 0;">
+				                    <div class="avaliacao-list-detail">
+				                        <div class="avaliacao-name">#{avaliacao.usuario.nome}</div>
+				                        <p:rating readonly="true" value="#{avaliacao.numeroAvaliacao}"/>
+				                        <p class="avaliacao-data-registro">postado em #{avaliacao.dataRegistro}</p>
+				                        <div class="avaliacao-description" style="text-indent: 15px">#{avaliacao.descricao}</div>
+				                    </div>
+				                </div>
+				            </p:dataViewListItem>
+				            
+				        </p:dataView>
+				    </h:form>
+				</div>
+			</div>
+
+		</ui:define>
+		<ui:define name="footer">
+			<div class="div-footer-voltar">
+				<a href="hotel.xhtml">Voltar para a página de informações do hotel</a>
+			</div>
+		</ui:define>
+	</ui:composition>
+
+</html>

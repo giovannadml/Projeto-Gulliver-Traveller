@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="_template.xhtml">
+
+	<ui:define name="content">
+		<div class="div-hotel">
+			<div class="div-imagem-hotel" style="background-image: url('#{hotel.foto}'); background-size: cover">
+			</div>
+			<div class="div-informacoes-hotel">
+				<div class="div-titulo-hotel">
+					<p style="font-family: 'Proza Libre', sans-serif; font-size: 18px;">#{hotel.nome}</p>
+				</div>
+				<div class="div-desc-rating">
+					<div class="div-desc-hotel">
+						<p:dataScroller ajax="false" value="#{hotel.descricao}" scrollHeight="180" chunkSize="10" mode="inline" >
+						<p style="text-indent: 15px;">#{hotel.descricao}</p>
+						
+						</p:dataScroller>
+					</div>
+					<div class="div-rating-hotel">
+						<p:rating value="#{avaliacaoBean.MediaRating(hotel.codigo)}" readonly="true" />
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div class="div-mapa" align="center">			
+			<h2 class="h2-hotel">Localização</h2>
+			<iframe src="#{hotel.mapa}" width="80%" height="450px" style="border:0;" align="middle"></iframe>
+			<p style="font-size: 30; text-align: center; font-family: 'Proza Libre', sans-serif; margin-top: 3vh;">
+				Distância até a avenida paulista: #{hotel.distanciaPaulista}
+			</p>
+		</div>
+		
+		<div class="botao-ver-avaliacoes">
+			<a href="avaliacoes.xhtml">Ver avaliações</a>
+		</div>
+
+	</ui:define>
+
+
+
+</ui:composition>
+
+</html>
