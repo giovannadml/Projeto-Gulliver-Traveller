@@ -59,7 +59,6 @@
 	</dependency>	
 	
 	    <!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
-    <!--Dependência sql server, tenta jre11 se esse n funcionar  -->
     <dependency>
         <groupId>com.microsoft.sqlserver</groupId>
         <artifactId>mssql-jdbc</artifactId>
